@@ -1,0 +1,255 @@
+/* ===========================
+   Reusable UI Components
+   =========================== */
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 24px;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  border-radius: var(--border-radius-md);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow var(--transition-fast), background-color var(--transition-fast);
+  text-align: center;
+  gap: var(--spacing-sm);
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(226, 55, 68, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background-color: rgba(226, 55, 68, 0.05);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* --- Floating Label Inputs --- */
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: var(--spacing-lg);
+}
+
+.input-field {
+  width: 100%;
+  padding: 24px 16px 8px 16px;
+  /* Space for floating label */
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--surface-color);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--primary-color);
+}
+
+.input-label {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+  transform-origin: left top;
+}
+
+/* Floating logic */
+.input-field:focus+.input-label,
+.input-field:not(:placeholder-shown)+.input-label,
+select.input-field+.input-label,
+input[type="datetime-local"].input-field+.input-label,
+input[type="date"].input-field+.input-label {
+  top: 6px;
+  font-size: var(--font-size-xs);
+  color: var(--primary-color);
+}
+
+.input-field:not(:placeholder-shown):not(:focus)+.input-label {
+  color: var(--text-secondary);
+}
+
+select.input-field:not(:focus)+.input-label,
+input[type="datetime-local"].input-field:not(:focus)+.input-label,
+input[type="date"].input-field:not(:focus)+.input-label {
+  color: var(--text-secondary);
+}
+
+.input-error {
+  border-color: var(--error-color) !important;
+}
+
+.input-error+.input-label,
+.input-field:focus.input-error+.input-label {
+  color: var(--error-color) !important;
+}
+
+.error-text {
+  color: var(--error-color);
+  font-size: 12px;
+  margin-top: 4px;
+  margin-left: 16px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* --- Bottom Sheet / Modal --- */
+.bottom-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  /* limit overlay width if needed */
+}
+
+.bottom-sheet-content {
+  width: 100%;
+  max-width: var(--max-width-app);
+  background: var(--surface-color);
+  border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+  padding: var(--spacing-xl) var(--spacing-lg) calc(var(--spacing-xl) + env(safe-area-inset-bottom));
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  /* animation handled in global.css (.slide-up) */
+}
+
+.bottom-sheet-handle {
+  width: 40px;
+  height: 4px;
+  background-color: var(--border-color);
+  border-radius: 2px;
+  margin: 0 auto var(--spacing-lg) auto;
+}
+
+/* --- Cards / Surfaces --- */
+.card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-md);
+  transition: transform var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Header --- */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  background-color: var(--surface-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* border-bottom: 1px solid var(--border-color); */
+}
+
+.back-button {
+  background: none;
+  border: none;
+  padding: var(--spacing-xs);
+  cursor: pointer;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color var(--transition-fast);
+}
+
+.back-button:hover {
+  background-color: var(--bg-color);
+}
+
+/* Utility layout */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-md {
+  gap: var(--spacing-md);
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+/* ===========================
+   Responsive Component Overrides
+   =========================== */
+@media (max-width: 380px) {
+  .app-header {
+    padding: var(--spacing-md);
+  }
+
+  .bottom-sheet-content {
+    padding: var(--spacing-lg) var(--spacing-md) calc(var(--spacing-lg) + env(safe-area-inset-bottom));
+  }
+
+  .input-group {
+    margin-bottom: var(--spacing-md);
+  }
+}

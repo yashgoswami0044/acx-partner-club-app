@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Colors - Zomato/Blinkit inspired */
+  --primary-color: #9D1680;
+  /* Zomato Red */
+  --primary-hover: #211655;
+  --secondary-color: #2D9CDB;
+  /* Cool blue for links/accents */
+
+  --bg-color: #F8F9FA;
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.34);
+  /* Premium light gray background */
+  --surface-color: #ffffff;
+  /* Pure white cards/sheets */
+
+  --text-primary: #1C1C1C;
+  --text-secondary: #6B6B6B;
+  --text-disabled: #A0A0A0;
+
+  --border-color: #E8E8E8;
+  --error-color: #FF3B30;
+  --success-color: #34C759;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 32px;
+
+  /* Layout */
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+  --max-width-app: 480px;
+  /* Mobile first / centered app container */
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-theme='dark'] {
+  --primary-color: #9D1680;
+  --primary-hover: #D728B4;
+  --secondary-color: #56CCF2;
+  
+  --bg-color: #0F0F13;
+  --glass-bg: rgba(20, 20, 28, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --surface-color: #1A1A22;
+  
+  --text-primary: #F0F0F4;
+  --text-secondary: #A1A1AA;
+  --text-disabled: #52525B;
+  
+  --border-color: #272733;
+  --error-color: #FF453A;
+  --success-color: #32D74B;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background-color: var(--bg-color);
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+#root {
+  width: 100%;
+  max-width: var(--max-width-app);
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: var(--font-size-xxl);
+}
+
+h2 {
+  font-size: var(--font-size-xl);
+}
+
+h3 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Scrollbar hiding for clean app feel */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* ===========================
+   Responsive Overrides
+   =========================== */
+
+/* Small phones (380px and below) */
+@media (max-width: 380px) {
+  :root {
+    --spacing-xs: 3px;
+    --spacing-sm: 6px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-xxl: 36px;
+
+    --font-size-xs: 11px;
+    --font-size-sm: 13px;
+    --font-size-base: 14px;
+    --font-size-lg: 17px;
+    --font-size-xl: 20px;
+    --font-size-xxl: 26px;
+
+    --border-radius-sm: 6px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 14px;
+    --border-radius-xl: 20px;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .input-field {
+    padding: 20px 14px 6px 14px;
+    font-size: 14px;
+  }
+
+  .card {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+  }
+}
+
+/* Very small phones (320px and below) */
+@media (max-width: 320px) {
+  :root {
+    --spacing-xs: 2px;
+    --spacing-sm: 4px;
+    --spacing-md: 10px;
+    --spacing-lg: 14px;
+    --spacing-xl: 20px;
+    --spacing-xxl: 28px;
+
+    --font-size-xs: 10px;
+    --font-size-sm: 12px;
+    --font-size-base: 13px;
+    --font-size-lg: 15px;
+    --font-size-xl: 18px;
+    --font-size-xxl: 22px;
+  }
+
+  .btn {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+/* ===========================
+   Elite Dark Utilities
+   =========================== */
+
+.mesh-bg {
+  background: radial-gradient(at 0% 0%, rgba(157, 22, 128, 0.12) 0px, transparent 50%),
+              radial-gradient(at 100% 0%, rgba(33, 22, 85, 0.12) 0px, transparent 50%),
+              radial-gradient(at 100% 100%, rgba(157, 22, 128, 0.08) 0px, transparent 50%),
+              radial-gradient(at 0% 100%, rgba(33, 22, 85, 0.08) 0px, transparent 50%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.neon-glow {
+  box-shadow: 0 0 20px rgba(157, 22, 128, 0.15);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.primary-gradient {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #211655 100%);
+}
+
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.card-hover:active {
+  transform: scale(0.96);
+}
+
+.premium-shadow {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
