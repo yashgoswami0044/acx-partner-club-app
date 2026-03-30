@@ -33,7 +33,7 @@ const EarningsScreen: React.FC = () => {
 
   const filteredEarnings = mockEarnings.filter(e => {
     const matchesTab = activeTab === 'Total' || e.status === activeTab;
-    const matchesSearch = e.customerName.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    const matchesSearch = e.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          e.project.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesTab && matchesSearch;
   });
@@ -50,57 +50,61 @@ const EarningsScreen: React.FC = () => {
 
   return (
     <div className="flex-column fade-in" style={{ height: '100vh', backgroundColor: 'var(--bg-color)', position: 'relative', overflow: 'hidden' }}>
-      
+
       {/* Header */}
-      <div style={{ 
-        padding: '16px var(--spacing-lg) 12px', 
-        backgroundColor: 'var(--surface-color)', 
-        borderBottom: '1px solid var(--border-color)', 
+      <div style={{
+        padding: '16px var(--spacing-lg) 12px',
+        backgroundColor: 'var(--surface-color)',
+        borderBottom: '1px solid var(--border-color)',
         position: 'relative', zIndex: 10,
         boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          
+
           <button onClick={() => navigate(-1)} style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', padding: '10px', borderRadius: '14px', cursor: 'pointer', display: 'flex' }}>
             <ArrowLeft size={20} color="var(--text-primary)" strokeWidth={2.5} />
           </button>
 
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: 'var(--bg-color)', borderRadius: '16px', padding: '0 16px', border: '1px solid var(--border-color)', transition: 'all 0.3s' }}>
             <Search size={18} color="var(--text-disabled)" strokeWidth={2.5} />
-            <input 
-              placeholder="Search by customer or project..." 
-              type="text" 
+            <input
+              placeholder="Search by customer or project..."
+              type="text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              style={{ flex: 1, border: 'none', outline: 'none', padding: '14px 0', fontSize: '14px', fontWeight: 600, backgroundColor: 'transparent', color: 'var(--text-primary)' }} 
+              style={{ flex: 1, border: 'none', outline: 'none', padding: '14px 0', fontSize: '14px', fontWeight: 600, backgroundColor: 'transparent', color: 'var(--text-primary)' }}
             />
           </div>
+
+
+
+          <button onClick={() => toggleFilter(true)} style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', padding: '10px', borderRadius: '14px', cursor: 'pointer', display: 'flex' }}>
+            <SlidersHorizontal size={20} color="var(--text-primary)" strokeWidth={2.5} />
+          </button>
 
           <button onClick={openSideMenu} style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', padding: '10px', borderRadius: '14px', cursor: 'pointer', display: 'flex' }}>
             <Menu size={20} color="var(--text-primary)" strokeWidth={2.5} />
           </button>
 
-          <button onClick={() => toggleFilter(true)} style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', padding: '10px', borderRadius: '14px', cursor: 'pointer', display: 'flex' }}>
-            <SlidersHorizontal size={20} color="var(--text-primary)" strokeWidth={2.5} />
-          </button>
+          
         </div>
       </div>
 
       <div className="hide-scroll" style={{ flex: 1, overflowY: 'auto', paddingBottom: '120px' }}>
-        
+
         {/* Earnings Overview Card */}
         <div style={{ padding: '24px var(--spacing-lg)' }}>
-          <div style={{ 
-            background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', 
-            borderRadius: '32px', 
-            padding: '24px', 
-            color: '#fff', 
-            position: 'relative', 
+          <div style={{
+            background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+            borderRadius: '32px',
+            padding: '24px',
+            color: '#fff',
+            position: 'relative',
             overflow: 'hidden',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)' 
+            boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
           }}>
             <div style={{ position: 'absolute', top: '-20px', right: '-20px', width: '120px', height: '120px', backgroundColor: 'rgba(157, 22, 128, 0.1)', borderRadius: '50%', filter: 'blur(40px)' }} />
-            
+
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
                <div>
                   <p style={{ margin: '0 0 4px 0', fontSize: '13px', color: 'rgba(255,255,255,0.6)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px' }}>Total Pipeline Earning</p>
@@ -132,8 +136,8 @@ const EarningsScreen: React.FC = () => {
           {TABS.map(tab => {
             const isActive = activeTab === tab;
             return (
-              <button key={tab} onClick={() => setActiveTab(tab)} style={{ 
-                padding: '10px 20px', borderRadius: '100px', 
+              <button key={tab} onClick={() => setActiveTab(tab)} style={{
+                padding: '10px 20px', borderRadius: '100px',
                 backgroundColor: isActive ? 'var(--primary-color)' : 'var(--bg-color)',
                 color: isActive ? '#fff' : 'var(--text-secondary)',
                 fontSize: '13px', fontWeight: isActive ? 800 : 600,
@@ -153,14 +157,14 @@ const EarningsScreen: React.FC = () => {
             const isExpanded = expandedCardId === item.id;
             const statusColor = getStatusColor(item.status);
             const currentStageIdx = STATUS_STAGES.indexOf(item.status);
-            
+
             return (
-              <div key={item.id} className="slide-up" style={{ 
-                backgroundColor: 'var(--surface-color)', 
-                borderRadius: '28px', 
-                border: '1px solid var(--border-color)', 
-                boxShadow: '0 10px 30px rgba(0,0,0,0.04)', 
-                overflow: 'hidden', 
+              <div key={item.id} className="slide-up" style={{
+                backgroundColor: 'var(--surface-color)',
+                borderRadius: '28px',
+                border: '1px solid var(--border-color)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
+                overflow: 'hidden',
                 marginBottom: '20px',
                 animationDelay: `${idx * 0.1}s`
               }}>
@@ -169,7 +173,7 @@ const EarningsScreen: React.FC = () => {
                     <div>
                       <h3 style={{ margin: '0 0 6px 0', fontSize: '20px', fontWeight: 900, color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>{item.customerName}</h3>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-secondary)', fontSize: '13px', fontWeight: 600 }}>
-                        <MapPin size={14} color="var(--primary-color)" /> 
+                        <MapPin size={14} color="var(--primary-color)" />
                         {item.project}
                       </div>
                     </div>
@@ -187,10 +191,10 @@ const EarningsScreen: React.FC = () => {
                         const isCompleted = sIdx <= currentStageIdx;
                         return (
                           <div key={stage} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                            <div style={{ 
-                              width: '22px', height: '22px', borderRadius: '50%', 
-                              backgroundColor: isCompleted ? statusColor : 'var(--bg-color)', 
-                              border: isCompleted ? 'none' : '2px solid var(--border-color)', 
+                            <div style={{
+                              width: '22px', height: '22px', borderRadius: '50%',
+                              backgroundColor: isCompleted ? statusColor : 'var(--bg-color)',
+                              border: isCompleted ? 'none' : '2px solid var(--border-color)',
                               display: 'flex', alignItems: 'center', justifyContent: 'center',
                               boxShadow: isCompleted ? `0 4px 10px ${statusColor}40` : 'none',
                               transition: 'all 0.3s'
@@ -204,8 +208,8 @@ const EarningsScreen: React.FC = () => {
                     </div>
                   </div>
 
-                  <div style={{ 
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
+                  <div style={{
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     padding: '16px', borderRadius: '18px',
                     backgroundColor: 'var(--bg-color)',
                     border: '1px solid var(--border-color)'
@@ -228,7 +232,7 @@ const EarningsScreen: React.FC = () => {
                       <div><span style={{ fontSize: '11px', color: 'var(--text-disabled)', fontWeight: 800, display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>Unit Info</span><span style={{ fontSize: '14px', fontWeight: 800 }}>{item.unit}</span></div>
                       <div><span style={{ fontSize: '11px', color: 'var(--text-disabled)', fontWeight: 800, display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>Reg. Date</span><span style={{ fontSize: '14px', fontWeight: 800 }}>{item.registrationDate}</span></div>
                     </div>
-                    
+
                     <div style={{ marginTop: '20px', padding: '16px', borderRadius: '18px', background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.1)' }}>
                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ fontSize: '13px', color: 'var(--text-secondary)', fontWeight: 600 }}>TDS Deducted (Est)</span><span style={{ fontSize: '13px', color: '#EF4444', fontWeight: 800 }}>- {item.tdsAmount}</span></div>
                        <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '10px', borderTop: '1px dashed rgba(16, 185, 129, 0.2)' }}><span style={{ fontSize: '15px', fontWeight: 900 }}>Total Received</span><span style={{ fontSize: '15px', fontWeight: 900, color: '#10B981' }}>{item.brokeragePaid}</span></div>
@@ -238,30 +242,30 @@ const EarningsScreen: React.FC = () => {
 
                 <div style={{ padding: '0 24px 24px', display: 'flex', gap: '12px' }}>
                   {item.status === 'Pending' ? (
-                    <button onClick={() => navigate(`/add-invoice/${item.id}`)} style={{ 
-                      flex: 1, height: '52px', borderRadius: '16px', border: 'none', 
-                      background: 'var(--primary-gradient)', color: '#fff', 
-                      fontSize: '15px', fontWeight: 900, cursor: 'pointer', 
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', 
-                      boxShadow: '0 10px 20px rgba(157, 22, 128, 0.3)' 
+                    <button onClick={() => navigate(`/add-invoice/${item.id}`)} style={{
+                      flex: 1, height: '52px', borderRadius: '16px', border: 'none',
+                      background: 'var(--primary-gradient)', color: '#fff',
+                      fontSize: '15px', fontWeight: 900, cursor: 'pointer',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                      boxShadow: '0 10px 20px rgba(157, 22, 128, 0.3)'
                     }}>
                       <Plus size={18} strokeWidth={3} /> Raise Invoice
                     </button>
                   ) : (
                     <>
-                      <button onClick={() => navigate(`/view-invoice/${item.id}`)} style={{ 
-                        flex: 1, height: '52px', borderRadius: '16px', 
-                        border: '1px solid var(--primary-color)', background: 'transparent', 
-                        color: 'var(--primary-color)', fontSize: '15px', fontWeight: 900, 
-                        cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' 
+                      <button onClick={() => navigate(`/view-invoice/${item.id}`)} style={{
+                        flex: 1, height: '52px', borderRadius: '16px',
+                        border: '1px solid var(--primary-color)', background: 'transparent',
+                        color: 'var(--primary-color)', fontSize: '15px', fontWeight: 900,
+                        cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'
                       }}>
                         <FileText size={18} strokeWidth={2.5} /> View Invoice
                       </button>
-                      <button style={{ 
-                        width: '52px', height: '52px', borderRadius: '16px', 
-                        border: '1px solid var(--border-color)', background: 'var(--bg-color)', 
-                        color: 'var(--text-secondary)', cursor: 'pointer', 
-                        display: 'flex', alignItems: 'center', justifyContent: 'center' 
+                      <button style={{
+                        width: '52px', height: '52px', borderRadius: '16px',
+                        border: '1px solid var(--border-color)', background: 'var(--bg-color)',
+                        color: 'var(--text-secondary)', cursor: 'pointer',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center'
                       }}>
                         <Share2 size={18} strokeWidth={2.5}/>
                       </button>
@@ -278,9 +282,9 @@ const EarningsScreen: React.FC = () => {
       {showFilter && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 400, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
           <div onClick={() => toggleFilter(false)} style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(6px)' }} />
-          <div className="slide-up" style={{ 
-            width: '100%', maxWidth: 'var(--max-width-app)', 
-            backgroundColor: 'var(--surface-color)', borderRadius: '32px 32px 0 0', 
+          <div className="slide-up" style={{
+            width: '100%', maxWidth: 'var(--max-width-app)',
+            backgroundColor: 'var(--surface-color)', borderRadius: '32px 32px 0 0',
             padding: '24px var(--spacing-lg) 40px', maxHeight: '85vh', overflowY: 'auto',
             position: 'relative', zIndex: 1,
             boxShadow: '0 -10px 40px rgba(0,0,0,0.2)'
@@ -288,7 +292,7 @@ const EarningsScreen: React.FC = () => {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
               <div style={{ width: '40px', height: '5px', borderRadius: '100px', backgroundColor: 'var(--border-color)' }} />
             </div>
-            
+
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
               <h2 style={{ margin: 0, fontSize: '24px', fontWeight: 900 }}>Filters</h2>
               <button onClick={() => toggleFilter(false)} style={{ background: 'var(--bg-color)', border: 'none', padding: '10px', borderRadius: '14px', cursor: 'pointer' }}>

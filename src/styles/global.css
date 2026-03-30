@@ -299,7 +299,10 @@ a {
 }
 
 .primary-gradient {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #211655 100%);
+  background: linear-gradient(135deg, rgba(157, 22, 128, 0.92) 0%, rgba(33, 22, 85, 0.92) 100%), url('/yash/acx-pc/nav-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
 }
 
 .card-hover {

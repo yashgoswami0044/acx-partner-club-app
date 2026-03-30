@@ -108,7 +108,13 @@ const ConstructionUpdatesScreen: React.FC = () => {
         <div style={{ position: 'absolute', inset: 0, zIndex: 200, display: 'flex' }} onClick={() => { setShowSideMenu(false); setPopupOpen(false); }}>
           <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)' }} />
           <div className="slide-in-left" onClick={e => e.stopPropagation()} style={{ position: 'absolute', width: '300px', height: '100%', backgroundColor: 'var(--surface-color)', borderRadius: '0 28px 28px 0', boxShadow: '12px 0 40px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-            <div style={{ background: 'linear-gradient(135deg, var(--primary-color) 0%, #211655 100%)', padding: '24px' }}>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(157, 22, 128, 0.92) 0%, rgba(33, 22, 85, 0.92) 100%), url(\'/yash/acx-pc/nav-bg.jpg\')',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundBlendMode: 'overlay',
+              padding: '24px'
+            }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <img src="https://i.pravatar.cc/150?img=11" alt="Profile" style={{ width: '56px', height: '56px', borderRadius: '15px' }} />
                 <div>

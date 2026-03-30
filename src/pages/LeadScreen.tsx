@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Search, ChevronRight, Menu,
-  SlidersHorizontal, X, MapPin, CalendarDays, 
+  SlidersHorizontal, X, MapPin, CalendarDays,
   User, MessageSquare, Briefcase, FileCheck
 } from 'lucide-react';
 import { useUI } from '../contexts/UIContext';
@@ -32,10 +32,10 @@ const LeadScreen: React.FC = () => {
 
   const filteredLeads = mockLeads.filter(lead => {
     const matchesTab = activeTab === 'Total' || lead.status === activeTab;
-    const matchesSearch = lead.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    const matchesSearch = lead.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          lead.project.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesProject = selectedProject === 'All Projects' || lead.project === selectedProject;
-    
+
     return matchesTab && matchesSearch && matchesProject;
   });
 
@@ -53,35 +53,33 @@ const LeadScreen: React.FC = () => {
 
   return (
     <div className="flex-column fade-in" style={{ height: '100vh', backgroundColor: 'var(--bg-color)', position: 'relative', overflow: 'hidden' }}>
-      
+
       {/* Header */}
-      <div style={{ 
-        padding: '16px var(--spacing-lg) 12px', 
-        backgroundColor: 'var(--surface-color)', 
-        borderBottom: '1px solid var(--border-color)', 
+      <div style={{
+        padding: '16px var(--spacing-lg) 12px',
+        backgroundColor: 'var(--surface-color)',
+        borderBottom: '1px solid var(--border-color)',
         position: 'relative', zIndex: 10,
         boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          
+
           <button onClick={() => navigate(-1)} style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', padding: '10px', borderRadius: '14px', cursor: 'pointer', display: 'flex' }}>
             <ArrowLeft size={20} color="var(--text-primary)" strokeWidth={2.5} />
           </button>
 
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: 'var(--bg-color)', borderRadius: '16px', padding: '0 16px', border: '1px solid var(--border-color)', transition: 'all 0.3s' }}>
             <Search size={18} color="var(--text-disabled)" strokeWidth={2.5} />
-            <input 
-              placeholder="Search customers, projects..." 
-              type="text" 
+            <input
+              placeholder="Search customers, projects..."
+              type="text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              style={{ flex: 1, border: 'none', outline: 'none', padding: '14px 0', fontSize: '14px', fontWeight: 600, backgroundColor: 'transparent', color: 'var(--text-primary)' }} 
+              style={{ flex: 1, border: 'none', outline: 'none', padding: '14px 0', fontSize: '14px', fontWeight: 600, backgroundColor: 'transparent', color: 'var(--text-primary)' }}
             />
           </div>
 
-          <button onClick={openSideMenu} style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', padding: '10px', borderRadius: '14px', cursor: 'pointer', display: 'flex' }}>
-            <Menu size={20} color="var(--text-primary)" strokeWidth={2.5} />
-          </button>
+
 
           <button onClick={() => toggleFilter(true)} style={{ background: hasFilters ? 'var(--primary-gradient)' : 'var(--bg-color)', color: hasFilters ? '#fff' : 'var(--text-primary)', border: `1px solid ${hasFilters ? 'transparent' : 'var(--border-color)'}`, padding: '10px', borderRadius: '14px', cursor: 'pointer', display: 'flex', position: 'relative', boxShadow: hasFilters ? '0 4px 12px rgba(157, 22, 128, 0.25)' : 'none' }}>
             <SlidersHorizontal size={20} strokeWidth={2.5} />
@@ -91,6 +89,12 @@ const LeadScreen: React.FC = () => {
               </div>
             )}
           </button>
+
+          <button onClick={openSideMenu} style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', padding: '10px', borderRadius: '14px', cursor: 'pointer', display: 'flex' }}>
+            <Menu size={20} color="var(--text-primary)" strokeWidth={2.5} />
+          </button>
+
+          
         </div>
       </div>
 
@@ -100,8 +104,8 @@ const LeadScreen: React.FC = () => {
           const isActive = activeTab === tab;
           const count = tab === 'Total' ? mockLeads.length : mockLeads.filter(l => l.status === tab).length;
           return (
-            <button key={tab} onClick={() => setActiveTab(tab)} style={{ 
-              padding: '10px 18px', borderRadius: '100px', 
+            <button key={tab} onClick={() => setActiveTab(tab)} style={{
+              padding: '10px 18px', borderRadius: '100px',
               backgroundColor: isActive ? 'var(--primary-color)' : 'var(--bg-color)',
               color: isActive ? '#fff' : 'var(--text-secondary)',
               fontSize: '13px', fontWeight: isActive ? 800 : 600,
@@ -122,10 +126,10 @@ const LeadScreen: React.FC = () => {
         {filteredLeads.length > 0 ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {filteredLeads.map((lead, idx) => (
-              <div key={lead.id} className="slide-up" style={{ 
-                backgroundColor: 'var(--surface-color)', 
-                borderRadius: '24px', 
-                padding: '20px', 
+              <div key={lead.id} className="slide-up" style={{
+                backgroundColor: 'var(--surface-color)',
+                borderRadius: '24px',
+                padding: '20px',
                 border: '1px solid var(--border-color)',
                 boxShadow: '0 8px 24px rgba(0,0,0,0.04)',
                 animationDelay: `${idx * 0.08}s`,
@@ -135,8 +139,8 @@ const LeadScreen: React.FC = () => {
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '18px' }}>
                   <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
-                    <div style={{ 
-                      width: '52px', height: '52px', borderRadius: '16px', 
+                    <div style={{
+                      width: '52px', height: '52px', borderRadius: '16px',
                       background: `linear-gradient(135deg, ${lead.color} 0%, ${lead.color}dd 100%)`,
                       color: '#fff',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -153,8 +157,8 @@ const LeadScreen: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div style={{ 
-                    padding: '6px 12px', borderRadius: '10px', 
+                  <div style={{
+                    padding: '6px 12px', borderRadius: '10px',
                     backgroundColor: `${lead.status === 'Cancelled' ? '#EF444415' : lead.color + '15'}`,
                     color: lead.status === 'Cancelled' ? '#EF4444' : lead.color,
                     fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.6px'
@@ -219,9 +223,9 @@ const LeadScreen: React.FC = () => {
       {showFilter && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 400, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
           <div onClick={() => toggleFilter(false)} style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(6px)' }} />
-          <div className="slide-up" style={{ 
-            width: '100%', maxWidth: 'var(--max-width-app)', 
-            backgroundColor: 'var(--surface-color)', borderRadius: '32px 32px 0 0', 
+          <div className="slide-up" style={{
+            width: '100%', maxWidth: 'var(--max-width-app)',
+            backgroundColor: 'var(--surface-color)', borderRadius: '32px 32px 0 0',
             padding: '24px var(--spacing-lg) 40px', maxHeight: '85vh', overflowY: 'auto',
             position: 'relative', zIndex: 1,
             boxShadow: '0 -10px 40px rgba(0,0,0,0.1)'
@@ -229,7 +233,7 @@ const LeadScreen: React.FC = () => {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
               <div style={{ width: '40px', height: '5px', borderRadius: '100px', backgroundColor: 'var(--border-color)' }} />
             </div>
-            
+
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
               <h2 style={{ margin: 0, fontSize: '24px', fontWeight: 900 }}>Filter Leads</h2>
               <button onClick={() => toggleFilter(false)} style={{ background: 'var(--bg-color)', border: 'none', padding: '10px', borderRadius: '14px', cursor: 'pointer' }}>
@@ -241,10 +245,10 @@ const LeadScreen: React.FC = () => {
               <h3 style={{ fontSize: '15px', fontWeight: 800, marginBottom: '14px', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>By Project</h3>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                 {['All Projects', 'Aurora Sky Residences', 'Lumina Tech Park', 'Zenith Tech Park'].map(p => (
-                  <button 
-                    key={p} 
+                  <button
+                    key={p}
                     onClick={() => setSelectedProject(p)}
-                    style={{ 
+                    style={{
                       padding: '12px 18px', borderRadius: '14px', border: '1px solid var(--border-color)',
                       backgroundColor: selectedProject === p ? 'var(--primary-color)' : 'var(--bg-color)',
                       color: selectedProject === p ? '#fff' : 'var(--text-secondary)',
@@ -261,10 +265,10 @@ const LeadScreen: React.FC = () => {
               <h3 style={{ fontSize: '15px', fontWeight: 800, marginBottom: '14px', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Budget Range</h3>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                 {['All Budgets', 'Under ₹50L', '₹50L - ₹1Cr', '₹1Cr - ₹3Cr', '₹3Cr - ₹5Cr', 'Above ₹5Cr'].map(b => (
-                  <button 
-                    key={b} 
+                  <button
+                    key={b}
                     onClick={() => setSelectedBudget(b)}
-                    style={{ 
+                    style={{
                       padding: '14px', borderRadius: '14px', border: '1px solid var(--border-color)',
                       backgroundColor: selectedBudget === b ? 'var(--primary-color)' : 'var(--bg-color)',
                       color: selectedBudget === b ? '#fff' : 'var(--text-secondary)',
@@ -278,12 +282,12 @@ const LeadScreen: React.FC = () => {
             </div>
 
             <div style={{ display: 'flex', gap: '14px' }}>
-              <button 
+              <button
                 onClick={() => { setSelectedProject('All Projects'); setSelectedBudget('All Budgets'); }}
                 style={{ flex: 1, padding: '18px', borderRadius: '18px', border: '1px solid var(--border-color)', background: 'var(--bg-color)', color: 'var(--text-primary)', fontWeight: 800, cursor: 'pointer', fontSize: '15px' }}>
                 Clear All
               </button>
-              <button 
+              <button
                 onClick={() => toggleFilter(false)}
                 style={{ flex: 2, padding: '18px', borderRadius: '18px', background: 'var(--primary-gradient)', color: '#fff', border: 'none', fontWeight: 900, cursor: 'pointer', fontSize: '15px', boxShadow: '0 8px 24px rgba(157, 22, 128, 0.3)' }}>
                 Apply Filters

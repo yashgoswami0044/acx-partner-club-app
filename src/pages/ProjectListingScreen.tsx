@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
+import {
   ArrowLeft, Search, SlidersHorizontal, Menu,
   Heart, ChevronDown, Check, IndianRupee, Star, Building2, MapPin, BedDouble, Maximize2, ArrowRight,
   X, LayoutGrid, List
@@ -144,16 +144,11 @@ const ProjectListingScreen: React.FC = () => {
             />
           </div>
 
-          <button onClick={openSideMenu} style={{
-            background: 'var(--bg-color)', border: '1px solid var(--border-color)', padding: '10px',
-            borderRadius: '14px', cursor: 'pointer', display: 'flex', flexShrink: 0,
-          }}>
-             <Menu size={20} color="var(--text-primary)" strokeWidth={2.5} />
-          </button>
+
 
           <button onClick={() => toggleFilter(true)} style={{
             background: hasFilters ? 'var(--primary-gradient)' : 'var(--bg-color)',
-            border: hasFilters ? 'none' : '1px solid var(--border-color)', 
+            border: hasFilters ? 'none' : '1px solid var(--border-color)',
             padding: '10px',
             borderRadius: '14px', cursor: 'pointer', display: 'flex', flexShrink: 0,
             boxShadow: hasFilters ? '0 4px 14px rgba(157, 22, 128, 0.25)' : 'none',
@@ -171,6 +166,15 @@ const ProjectListingScreen: React.FC = () => {
               }}>{activeFilterCount}</div>
             )}
           </button>
+
+          <button onClick={openSideMenu} style={{
+            background: 'var(--bg-color)', border: '1px solid var(--border-color)', padding: '10px',
+            borderRadius: '14px', cursor: 'pointer', display: 'flex', flexShrink: 0,
+          }}>
+             <Menu size={20} color="var(--text-primary)" strokeWidth={2.5} />
+          </button>
+
+          
         </div>
       </div>
 
@@ -212,15 +216,15 @@ const ProjectListingScreen: React.FC = () => {
             <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 900, color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>Featured Projects</h2>
             <div style={{ height: '6px', width: '6px', borderRadius: '50%', backgroundColor: 'var(--primary-color)' }} />
           </div>
-          
+
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div style={{ display: 'flex', background: 'var(--surface-color)', borderRadius: '10px', border: '1px solid var(--border-color)', padding: '2px' }}>
-              <button 
+              <button
                 onClick={() => setViewType('list')}
                 style={{ background: viewType === 'list' ? 'var(--bg-color)' : 'transparent', border: 'none', padding: '6px', borderRadius: '8px', cursor: 'pointer', display: 'flex', color: viewType === 'list' ? 'var(--primary-color)' : 'var(--text-disabled)' }}>
                 <List size={16} strokeWidth={2.5} />
               </button>
-              <button 
+              <button
                 onClick={() => setViewType('grid')}
                 style={{ background: viewType === 'grid' ? 'var(--bg-color)' : 'transparent', border: 'none', padding: '6px', borderRadius: '8px', cursor: 'pointer', display: 'flex', color: viewType === 'grid' ? 'var(--primary-color)' : 'var(--text-disabled)' }}>
                 <LayoutGrid size={16} strokeWidth={2.5} />
@@ -237,7 +241,7 @@ const ProjectListingScreen: React.FC = () => {
             <span style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 700 }}>{sortBy}</span>
             <ChevronDown size={14} color="var(--text-disabled)" strokeWidth={2.5} />
           </button>
-          
+
           {showSortDropdown && (
             <div style={{ position: 'absolute', top: '100%', right: 'var(--spacing-lg)', backgroundColor: 'var(--surface-color)', borderRadius: '16px', padding: '8px', boxShadow: '0 12px 40px rgba(0,0,0,0.15)', border: '1px solid var(--border-color)', zIndex: 100, minWidth: '180px' }}>
               {sortOptions.map(opt => (
@@ -251,12 +255,12 @@ const ProjectListingScreen: React.FC = () => {
         </div>
 
         {/* --- VERTICAL PROJECT CARDS --- */}
-        <div style={{ 
-          padding: '8px var(--spacing-lg)', 
-          display: viewType === 'grid' ? 'grid' : 'flex', 
+        <div style={{
+          padding: '8px var(--spacing-lg)',
+          display: viewType === 'grid' ? 'grid' : 'flex',
           gridTemplateColumns: '1fr 1fr',
-          flexDirection: 'column', 
-          gap: '20px' 
+          flexDirection: 'column',
+          gap: '20px'
         }}>
           {sortedProjects.map((proj, idx) => (
             <div key={proj.id} className="slide-up" onClick={() => navigate(`/project/${proj.id}`)} style={{
@@ -343,9 +347,9 @@ const ProjectListingScreen: React.FC = () => {
       {showFilter && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 400, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
           <div onClick={() => toggleFilter(false)} style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(6px)' }} />
-          <div className="slide-up" style={{ 
-            width: '100%', maxWidth: 'var(--max-width-app)', 
-            backgroundColor: 'var(--surface-color)', borderRadius: '32px 32px 0 0', 
+          <div className="slide-up" style={{
+            width: '100%', maxWidth: 'var(--max-width-app)',
+            backgroundColor: 'var(--surface-color)', borderRadius: '32px 32px 0 0',
             padding: '24px var(--spacing-lg) 40px', maxHeight: '85vh', overflowY: 'auto',
             position: 'relative', zIndex: 1,
             boxShadow: '0 -10px 40px rgba(0,0,0,0.2)'
@@ -353,7 +357,7 @@ const ProjectListingScreen: React.FC = () => {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
               <div style={{ width: '40px', height: '5px', borderRadius: '100px', backgroundColor: 'var(--border-color)' }} />
             </div>
-            
+
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
               <h2 style={{ margin: 0, fontSize: '24px', fontWeight: 900 }}>Filters</h2>
               <button onClick={() => toggleFilter(false)} style={{ background: 'var(--bg-color)', border: 'none', padding: '10px', borderRadius: '14px', cursor: 'pointer' }}>

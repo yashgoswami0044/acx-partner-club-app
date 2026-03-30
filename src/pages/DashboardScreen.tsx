@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Bell, MapPin, Trophy, 
-  CheckCircle2, Wallet, FileCheck, Activity, Target, ArrowRight,
-  Star, ChevronRight, Moon, CircleAlert, CalendarDays, Navigation,
-  Crown
+  Bell, MapPin, Trophy,
+  Menu, Wallet, FileCheck, Activity, Target, ArrowRight,
+  ChevronRight, Moon, CircleAlert, CalendarDays, Navigation
 } from 'lucide-react';
 import { useUI } from '../contexts/UIContext';
 
@@ -57,46 +56,49 @@ const DashboardScreen: React.FC = () => {
 
   return (
     <div className="flex-column fade-in" style={{ height: '100vh', backgroundColor: 'var(--bg-color)', position: 'relative', overflow: 'hidden' }}>
-      
+
       {/* --- ELITE HEADER --- */}
       <header className="mesh-bg" style={{
         position: 'relative', overflow: 'hidden',
-        background: 'linear-gradient(135deg, var(--primary-color) 0%, #211655 100%)',
-        padding: '36px var(--spacing-lg) 26px var(--spacing-lg)',
+        background: 'linear-gradient(135deg, rgba(157, 22, 128, 0.92) 0%, rgba(33, 22, 85, 0.92) 100%), url(\'/yash/acx-pc/nav-bg.jpg\')',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundBlendMode: 'overlay',
+        padding: '26px',
         color: '#fff', borderBottomLeftRadius: '36px', borderBottomRightRadius: '36px',
         boxShadow: '0 12px 40px rgba(0,0,0,0.18)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)', zIndex: 10
       }}>
         <div style={{ position: 'absolute', inset: 0, opacity: 0.1, backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '24px 24px' }} />
-        
+
         {/* --- Top Bar: Profile & Actions --- */}
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
-          marginBottom: isScrolled ? '0' : '32px',
-          paddingTop: '8px'
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: isScrolled ? '0' : '18px',
+
         }}>
           {/* Profile Section */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
             <div style={{ cursor: 'pointer', position: 'relative' }} onClick={openSideMenu}>
-              <div style={{ 
-                width: '52px', height: '52px', 
-                borderRadius: '50%', 
-                background: 'linear-gradient(45deg, #fff, rgba(255,255,255,0.3))', 
+              <div style={{
+                width: '52px', height: '52px',
+                borderRadius: '50%',
+                background: 'linear-gradient(45deg, #fff, rgba(255,255,255,0.3))',
                 padding: '2px',
                 boxShadow: '0 4px 15px rgba(0,0,0,0.15)'
               }}>
                 <img src="https://i.pravatar.cc/150?img=11" alt="Profile" style={{ width: '100%', height: '100%', borderRadius: '50%', border: '1.5px solid transparent' }} />
               </div>
-              <div className="neon-glow" style={{ 
-                position: 'absolute', bottom: 1, right: -1, 
-                background: '#fff', borderRadius: '50%', 
-                padding: '2px', width: '20px', height: '20px', 
-                display: 'flex', alignItems: 'center', justifyContent: 'center', 
+              <div className="neon-glow" style={{
+                position: 'absolute', bottom: 1, right: -1,
+                background: '#fff', borderRadius: '50%',
+                padding: '2px', width: '20px', height: '20px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
                 zIndex: 2
               }}>
-                 <CheckCircle2 color="var(--primary-color)" size={14} strokeWidth={3.5} />
+                 <Menu color="var(--primary-color)" size={14} strokeWidth={3.5} />
               </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -107,29 +109,29 @@ const DashboardScreen: React.FC = () => {
 
           {/* Action Buttons */}
           <div style={{ display: 'flex', gap: '10px' }}>
-             <button onClick={toggleDarkMode} className="card-hover" style={{ 
-                background: 'rgba(255,255,255,0.1)', 
-                backdropFilter: 'blur(12px)', 
-                padding: '12px', 
-                borderRadius: '16px', 
-                border: '1px solid rgba(255,255,255,0.1)', 
+             <button onClick={toggleDarkMode} className="card-hover" style={{
+                background: 'rgba(255,255,255,0.1)',
+                backdropFilter: 'blur(12px)',
+                padding: '12px',
+                borderRadius: '16px',
+                border: '1px solid rgba(255,255,255,0.1)',
                 color: '#fff',
                 display: 'flex', alignItems: 'center', justifyContent: 'center'
              }}>
                 <Moon size={18} strokeWidth={2.5} />
              </button>
-             <button onClick={() => navigate('/notifications')} className="card-hover" style={{ 
-                background: 'rgba(255,255,255,0.1)', 
-                backdropFilter: 'blur(12px)', 
-                padding: '12px', 
-                borderRadius: '16px', 
-                border: '1px solid rgba(255,255,255,0.1)', 
-                color: '#fff', 
+             <button onClick={() => navigate('/notifications')} className="card-hover" style={{
+                background: 'rgba(255,255,255,0.1)',
+                backdropFilter: 'blur(12px)',
+                padding: '12px',
+                borderRadius: '16px',
+                border: '1px solid rgba(255,255,255,0.1)',
+                color: '#fff',
                 position: 'relative',
                 display: 'flex', alignItems: 'center', justifyContent: 'center'
              }}>
                 <Bell size={18} strokeWidth={2.5} />
-                <span className="neon-glow" style={{ position: 'absolute', top: '10px', right: '11px', width: '9px', height: '9px', backgroundColor: '#F59E0B', borderRadius: '50%', border: '2px solid #211655' }} />
+                <span className="neon-glow" style={{ position: 'absolute', top: '10px', right: '11px', width: '9px', height: '9px', backgroundColor: '#F59E0B', borderRadius: '50%', border: '2px solid #dedbecff' }} />
              </button>
           </div>
         </div>
@@ -156,16 +158,16 @@ const DashboardScreen: React.FC = () => {
       </header>
 
       <div className="hide-scroll" onScroll={handleScroll} style={{ flex: 1, overflowY: 'auto', paddingTop: 'var(--spacing-xxl)', paddingBottom: '140px' }}>
-        
+
         {/* Action Required */}
         <div style={{ padding: '0 var(--spacing-lg)' }}>
-          <div className="card slide-up" style={{ 
-            marginTop: '-28px', position: 'relative', zIndex: 11, 
-            backgroundColor: 'var(--surface-color)', 
-            border: '1px solid rgba(226, 55, 68, 0.15)', 
-            display: 'flex', gap: '12px', alignItems: 'center', 
-            boxShadow: 'var(--shadow-md)', borderRadius: 'var(--border-radius-lg)', 
-            padding: 'var(--spacing-md)' 
+          <div className="card slide-up" style={{
+            marginTop: '-28px', position: 'relative', zIndex: 11,
+            backgroundColor: 'var(--surface-color)',
+            border: '1px solid rgba(226, 55, 68, 0.15)',
+            display: 'flex', gap: '12px', alignItems: 'center',
+            boxShadow: 'var(--shadow-md)', borderRadius: 'var(--border-radius-lg)',
+            padding: 'var(--spacing-md)'
           }}>
             <div style={{ backgroundColor: 'rgba(226, 55, 68, 0.08)', padding: '10px', borderRadius: '50%', display: 'flex' }}>
               <CircleAlert color="#EF4444" size={20} />
@@ -182,9 +184,9 @@ const DashboardScreen: React.FC = () => {
         <div style={{ padding: '0 var(--spacing-lg)', marginTop: 'var(--spacing-md)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px', marginBottom: 'var(--spacing-xl)' }}>
             {stats.map((s, idx) => (
-              <div key={idx} className="slide-up" style={{ 
-                animationDelay: `${idx * 0.05}s`, 
-                background: '#fff', borderRadius: '20px', 
+              <div key={idx} className="slide-up" style={{
+                animationDelay: `${idx * 0.05}s`,
+                background: '#fff', borderRadius: '20px',
                 padding: '16px 14px', position: 'relative', overflow: 'hidden',
                 boxShadow: '0 8px 16px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8)',
                 border: '1px solid rgba(0,0,0,0.04)',
@@ -193,19 +195,19 @@ const DashboardScreen: React.FC = () => {
               }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: `linear-gradient(90deg, ${s.color}, transparent)` }} />
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
-                  <div style={{ 
-                    width: '38px', height: '38px', borderRadius: '12px', 
-                    backgroundColor: `${s.color}1A`, display: 'flex', 
+                  <div style={{
+                    width: '38px', height: '38px', borderRadius: '12px',
+                    backgroundColor: `${s.color}1A`, display: 'flex',
                     alignItems: 'center', justifyContent: 'center', color: s.color,
                     boxShadow: `0 4px 12px ${s.color}1A`
                   }}>
                     <s.Icon size={24} strokeWidth={1.5} />
                   </div>
                   {s.trend && (
-                    <div style={{ 
-                      padding: '6px 10px', borderRadius: '100px', 
-                      backgroundColor: s.trendUp ? '#ECFDF5' : (s.trendUp === false ? '#FEF2F2' : '#F1F5F9'), 
-                      color: s.trendUp ? '#10B981' : (s.trendUp === false ? '#EF4444' : '#64748B'), 
+                    <div style={{
+                      padding: '6px 10px', borderRadius: '100px',
+                      backgroundColor: s.trendUp ? '#ECFDF5' : (s.trendUp === false ? '#FEF2F2' : '#F1F5F9'),
+                      color: s.trendUp ? '#10B981' : (s.trendUp === false ? '#EF4444' : '#64748B'),
                       fontSize: '11px', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '4px', letterSpacing: '0.5px'
                     }}>
                       {s.trend}
@@ -226,24 +228,24 @@ const DashboardScreen: React.FC = () => {
         </div>
 
         {/* VIP Invitation Card */}
-        <div className="slide-up" style={{ 
-          animationDelay: '0.2s', margin: 'var(--spacing-xl) var(--spacing-lg)', 
-          padding: 'var(--spacing-xl)', borderRadius: '24px', 
+        <div className="slide-up" style={{
+          animationDelay: '0.2s', margin: 'var(--spacing-xl) var(--spacing-lg)',
+          padding: 'var(--spacing-xl)', borderRadius: '24px',
           backgroundColor: '#0F172A', position: 'relative', overflow: 'hidden',
           boxShadow: '0 20px 40px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,0.1)'
         }}>
           <div style={{ position: 'absolute', inset: 0, background: 'url("https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop") center/cover', opacity: 0.4 }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0F172A 20%, transparent 100%)' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0F172A 0%, transparent 80%)' }} />
-          
+
           <div style={{ position: 'relative', zIndex: 2 }}>
-            <div style={{ 
-              display: 'inline-flex', alignItems: 'center', gap: '6px', 
-              background: 'linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05))', 
-              color: '#FDE68A', padding: '6px 14px', borderRadius: '100px', 
-              fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', 
-              marginBottom: '16px', border: '1px solid rgba(245,158,11,0.3)', 
-              backdropFilter: 'blur(8px)', letterSpacing: '1px' 
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '6px',
+              background: 'linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05))',
+              color: '#FDE68A', padding: '6px 14px', borderRadius: '100px',
+              fontSize: '11px', fontWeight: 800, textTransform: 'uppercase',
+              marginBottom: '16px', border: '1px solid rgba(245,158,11,0.3)',
+              backdropFilter: 'blur(8px)', letterSpacing: '1px'
             }}>
               <Trophy size={14} color="#F59E0B" strokeWidth={2} /> VIP INVITATION
             </div>
@@ -293,28 +295,28 @@ const DashboardScreen: React.FC = () => {
           </div>
           <div className="hide-scroll" style={{ display: 'flex', overflowX: 'auto', scrollSnapType: 'x mandatory', gap: 'var(--spacing-md)', paddingBottom: 'var(--spacing-md)', paddingRight: 'var(--spacing-lg)' }}>
             {offers.map((offer, idx) => (
-              <div key={idx} className="card slide-up" style={{ 
-                minWidth: '300px', scrollSnapAlign: 'start', borderRadius: '20px', 
-                overflow: 'hidden', backgroundColor: 'var(--surface-color)', 
+              <div key={idx} className="card slide-up" style={{
+                minWidth: '300px', scrollSnapAlign: 'start', borderRadius: '20px',
+                overflow: 'hidden', backgroundColor: 'var(--surface-color)',
                 border: '1px solid var(--border-color)', boxShadow: '0 12px 24px rgba(0,0,0,0.06)',
                 position: 'relative', display: 'flex', flexDirection: 'column', margin: 0, padding: 0
               }}>
                 <div style={{ position: 'relative', height: '180px', backgroundImage: `url(${offer.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
-                  <div style={{ 
-                    position: 'absolute', top: 16, left: 16, 
-                    backgroundColor: offer.color, color: '#fff', 
-                    padding: '6px 14px', borderRadius: '100px', 
-                    fontSize: '12px', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '6px', 
+                  <div style={{
+                    position: 'absolute', top: 16, left: 16,
+                    backgroundColor: offer.color, color: '#fff',
+                    padding: '6px 14px', borderRadius: '100px',
+                    fontSize: '12px', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '6px',
                     letterSpacing: '0.5px', boxShadow: `0 4px 12px ${offer.color}60`
                   }}>
                     <span style={{ fontSize: '14px' }}>{offer.icon}</span> {offer.tag}
                   </div>
-                  <div style={{ 
-                    position: 'absolute', bottom: -26, right: 20, 
-                    width: '64px', height: '64px', backgroundColor: '#fff', 
-                    borderRadius: '50%', display: 'flex', flexDirection: 'column', 
-                    alignItems: 'center', justifyContent: 'center', color: offer.color, 
+                  <div style={{
+                    position: 'absolute', bottom: -26, right: 20,
+                    width: '64px', height: '64px', backgroundColor: '#fff',
+                    borderRadius: '50%', display: 'flex', flexDirection: 'column',
+                    alignItems: 'center', justifyContent: 'center', color: offer.color,
                     boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 10
                   }}>
                     <span style={{ fontSize: '18px', fontWeight: 900, lineHeight: 1.1 }}>{offer.bonus}</span>
@@ -350,18 +352,18 @@ const DashboardScreen: React.FC = () => {
           </div>
           <div className="hide-scroll" style={{ display: 'flex', overflowX: 'auto', scrollSnapType: 'x mandatory', gap: 'var(--spacing-md)', paddingBottom: 'var(--spacing-md)', paddingRight: 'var(--spacing-lg)' }}>
             {projects.map((proj, idx) => (
-              <div key={idx} onClick={() => navigate(`/project/${proj.id}`)} style={{ 
-                minWidth: '280px', height: '373px', scrollSnapAlign: 'start', 
-                borderRadius: '20px', overflow: 'hidden', boxShadow: '0 12px 24px rgba(0,0,0,0.15)', 
+              <div key={idx} onClick={() => navigate(`/project/${proj.id}`)} style={{
+                minWidth: '280px', height: '373px', scrollSnapAlign: 'start',
+                borderRadius: '20px', overflow: 'hidden', boxShadow: '0 12px 24px rgba(0,0,0,0.15)',
                 position: 'relative', backgroundImage: `url(${proj.img})`, backgroundSize: 'cover', backgroundPosition: 'center', flexShrink: 0
               }}>
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 100%)' }} />
                 <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <div style={{ 
-                    padding: '6px 12px', backgroundColor: 'rgba(255,255,255,0.2)', 
-                    backdropFilter: 'blur(10px)', borderRadius: '100px', 
-                    border: '1px solid rgba(255,255,255,0.3)', color: '#fff', 
-                    display: 'flex', alignItems: 'center', gap: '4px' 
+                  <div style={{
+                    padding: '6px 12px', backgroundColor: 'rgba(255,255,255,0.2)',
+                    backdropFilter: 'blur(10px)', borderRadius: '100px',
+                    border: '1px solid rgba(255,255,255,0.3)', color: '#fff',
+                    display: 'flex', alignItems: 'center', gap: '4px'
                   }}>
                     <span style={{ fontSize: '10px', fontWeight: 600, opacity: 0.9, textTransform: 'uppercase' }}>Starts at</span>
                     <span style={{ fontSize: '13px', fontWeight: 800 }}>₹{proj.price}</span>
@@ -372,11 +374,11 @@ const DashboardScreen: React.FC = () => {
                     <MapPin size={12} color="#fff" /> {proj.loc}
                   </div>
                   <h4 style={{ margin: '0 0 16px 0', fontSize: '26px', fontWeight: 800, color: '#fff', letterSpacing: '-0.5px', lineHeight: 1.2 }}>{proj.name}</h4>
-                  <div style={{ 
-                    padding: '12px 14px', backgroundColor: 'rgba(0,0,0,0.4)', 
-                    backdropFilter: 'blur(12px)', borderRadius: '14px', 
-                    border: '1px solid rgba(255,255,255,0.15)', 
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center' 
+                  <div style={{
+                    padding: '12px 14px', backgroundColor: 'rgba(0,0,0,0.4)',
+                    backdropFilter: 'blur(12px)', borderRadius: '14px',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center'
                   }}>
                     <div>
                       <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '2px' }}>Available</div>
@@ -394,14 +396,14 @@ const DashboardScreen: React.FC = () => {
 
         {/* Podium Rank Board */}
         <div style={{ padding: '0 var(--spacing-lg)' }}>
-          <div className="slide-up" style={{ 
-            padding: 'var(--spacing-xl) var(--spacing-lg)', borderRadius: '24px', 
-            background: 'linear-gradient(180deg, #1E1B4B 0%, #0F172A 100%)', 
-            boxShadow: '0 24px 48px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,0.1)', 
-            position: 'relative', overflow: 'hidden' 
+          <div className="slide-up" style={{
+            padding: 'var(--spacing-xl) var(--spacing-lg)', borderRadius: '24px',
+            background: 'linear-gradient(180deg, #1E1B4B 0%, #0F172A 100%)',
+            boxShadow: '0 24px 48px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,0.1)',
+            position: 'relative', overflow: 'hidden'
           }}>
             <div style={{ position: 'absolute', top: -100, left: '50%', transform: 'translateX(-50%)', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
-            
+
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'var(--spacing-lg)', position: 'relative', zIndex: 2 }}>
               <h3 style={{ margin: 0, fontSize: '20px', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', letterSpacing: '-0.3px' }}>
                 <Trophy size={20} color="#FCD34D" fill="rgba(252,211,77,0.2)" /> Rank Board
@@ -456,12 +458,12 @@ const DashboardScreen: React.FC = () => {
               {/* Ranks 4-10 */}
               <div className="flex-column" style={{ gap: '8px' }}>
                 {top10.slice(3).map((usr, i) => (
-                  <div key={i} className="slide-up" style={{ 
-                    display: 'flex', alignItems: 'center', gap: '14px', padding: '4px 12px', borderRadius: '18px', 
-                    background: usr.isUser ? 'linear-gradient(90deg, rgba(226, 55, 68, 0.2), rgba(226, 55, 68, 0.05))' : 'rgba(255,255,255,0.03)', 
-                    border: usr.isUser ? '1px solid rgba(226, 55, 68, 0.5)' : '1px solid rgba(255,255,255,0.05)', 
-                    boxShadow: usr.isUser ? '0 4px 20px rgba(226, 55, 68, 0.2)' : 'none', 
-                    animationDelay: `${0.3 + i * 0.05}s`, backdropFilter: 'blur(10px)' 
+                  <div key={i} className="slide-up" style={{
+                    display: 'flex', alignItems: 'center', gap: '14px', padding: '4px 12px', borderRadius: '18px',
+                    background: usr.isUser ? 'linear-gradient(90deg, rgba(226, 55, 68, 0.2), rgba(226, 55, 68, 0.05))' : 'rgba(255,255,255,0.03)',
+                    border: usr.isUser ? '1px solid rgba(226, 55, 68, 0.5)' : '1px solid rgba(255,255,255,0.05)',
+                    boxShadow: usr.isUser ? '0 4px 20px rgba(226, 55, 68, 0.2)' : 'none',
+                    animationDelay: `${0.3 + i * 0.05}s`, backdropFilter: 'blur(10px)'
                   }}>
                     <div style={{ width: '28px', textAlign: 'center', fontSize: '16px', fontWeight: 800, color: usr.isUser ? '#fff' : 'rgba(255,255,255,0.4)', fontStyle: 'italic', letterSpacing: '-0.5px' }}>#{usr.rank}</div>
                     <img src={usr.img} alt={usr.name} style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', border: usr.isUser ? '2px solid #9D1680' : '1px solid rgba(255,255,255,0.1)', padding: '2px', backgroundColor: '#1E1B4B' }} />
@@ -481,17 +483,17 @@ const DashboardScreen: React.FC = () => {
 
         {/* Schedule Site Visit Card */}
         <div style={{ padding: '0 var(--spacing-lg)' }}>
-          <div className="card slide-up" style={{ 
-            marginTop: 'var(--spacing-xl)', padding: 'var(--spacing-lg)', 
-            borderRadius: 'var(--border-radius-lg)', border: '1px solid var(--border-color)', 
-            boxShadow: 'var(--shadow-sm)', background: 'linear-gradient(135deg, var(--surface-color), rgba(45,156,219,0.05))' 
+          <div className="card slide-up" style={{
+            marginTop: 'var(--spacing-xl)', padding: 'var(--spacing-lg)',
+            borderRadius: 'var(--border-radius-lg)', border: '1px solid var(--border-color)',
+            boxShadow: 'var(--shadow-sm)', background: 'linear-gradient(135deg, var(--surface-color), rgba(45,156,219,0.05))'
           }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-              <div style={{ 
-                width: '48px', height: '48px', borderRadius: '12px', 
-                background: 'var(--primary-color)', color: '#fff', 
-                display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                flexShrink: 0, boxShadow: '0 8px 16px rgba(45,156,219,0.3)' 
+              <div style={{
+                width: '48px', height: '48px', borderRadius: '12px',
+                background: 'var(--primary-color)', color: '#fff',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0, boxShadow: '0 8px 16px rgba(45,156,219,0.3)'
               }}>
                 <Navigation size={24} strokeWidth={2} />
               </div>
